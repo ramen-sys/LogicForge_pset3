@@ -1,7 +1,7 @@
 N,Q,Limit=map(int,input().split())
 weight=list(map(int,input().split()))
 priority=list(map(int,input().split()))
-people=zip(weight,priority)
+people=list(zip(weight,priority))
 
 
 
@@ -12,7 +12,7 @@ heavy=len(weight)-1
 light=0
 
 while light<=heavy:
-    if weight[heavy]+weight[light]<=Limit and not (priority[light][1]==1 and priority[heavy][1]==1):
+    if (people[heavy][0]+people[light][0]<=Limit) and not (people[light][1]==1 and people[heavy][1]==1):
 
         heavy-=1
         light+=1
@@ -28,16 +28,16 @@ for _ in range(Q):
     query=input().split()
 
     if query[0]=="CANPAIR":
-        if (weight[int(query[1])] + weight[int(query[2])] <= Limit) and not (priority[int(query[1]]) == 1 and priority[int(query[2])]==1):
+        if (weight[int(query[1])] + weight[int(query[2])] <= Limit) and not (priority[int(query[1])]== 1 and priority[int(query[2])]==1):
             print("Yes")
         else:
             print("No")
 
     else:
-        if query[1]<boat_count:
+        if int(query[1])<boat_count:
            rem= N-(2*int(query[1]))
            print("remaining people: ",rem)
-        elif query[1]>=boat_count:
+        elif int(query[1])>=boat_count:
             print("everyone evacuated")
 
 
